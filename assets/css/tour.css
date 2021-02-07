@@ -10413,7 +10413,31 @@ input[type="submit"],
   height:95% !important;
   transition: .5s ease-in;
   font-size: 1rem;
+  overflow:scroll;
 }
+@media only screen 
+and (max-device-width: 1000px)
+ { 
+  #tour-info {
+    background-color: rgba(27, 27, 27, .70);
+    width: 91%;
+    max-width:430px;
+    position: absolute;
+    left:0;
+    bottom:0;
+    height:95% !important;
+    transition: .5s ease-in;
+    font-size: 1rem;
+    overflow: scroll;
+  }
+
+  #map{
+    display: none;
+  }
+  #university-brand{
+    display: none;
+  }
+ }
 
 .h-tour {
   font-size: 2.5rem !important;
@@ -10468,4 +10492,11 @@ hr {
 .continue-btn:hover {
   color: #b1201b;
   cursor: pointer;
+}
+
+#map {
+  height: 200px;
+  /* The height is 400 pixels */
+  width: 100%;
+  /* The width is the width of the web page */
 }

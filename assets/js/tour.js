@@ -20,6 +20,7 @@ window.onload = function(){
 
 function nextStop() {
     setTitles();
+    initMap();
     currStopNum++;
 }
 
@@ -37,6 +38,13 @@ function getInfo(){
 }
 
 function setTitles() {
+    if(currStopNum >= tourInfo.length) {
+        document.getElementById('tour-title').innerHTML = "Thank you!";
+        document.getElementById('tour-subtitle').innerHTML = "See you Soon!";
+        document.getElementById('tourdesc').innerHTML = "Thank you for joining us today! We hope you had a wonderful time and hope to see you continue your interest in the University of Oklahoma!";
+        document.getElementById("tour-head").style.backgroundImage="url(\"images/tour-masthead.jpg\")";
+        return;
+    }
     console.log(tourInfo);
     var currStop = tourInfo[currStopNum];
     document.getElementById('tour-title').innerHTML = currStop.pointofinterest;
@@ -51,3 +59,22 @@ function setTitles() {
         url += '&stopname=' + currStop.pointofinterest.replace(/\s/g, '');
     }
 }
+
+// Initialize and add the map
+function initMap() {
+    // The location of StopPoint
+    var coord = tourInfo[currStopNum].coords.split(',');
+    const point = { lat: parseFloat(coord[0]), lng: parseFloat(coord[1]) };
+    console.log(point);
+    // The map, centered at StopPoint
+    const map = new google.maps.Map(document.getElementById("map"), {
+      zoom: 15,
+      center: point,
+      mapTypeId: 'satellite'
+    });
+    // The marker, positioned at StopPoint
+    const marker = new google.maps.Marker({
+      position: point,
+      map: map,
+    });
+  }
