@@ -26,5 +26,12 @@ services:
       - pg_data:/var/lib/postgresql/data
       - ./app/init.sql:/docker-entrypoint-initdb.d/init.sql
 
+  php:
+    image: php:apache
+    ports:
+      - 80:80
+    volumes:
+      - ./website:/var/www/html/
+
 volumes:
   pg_data:
